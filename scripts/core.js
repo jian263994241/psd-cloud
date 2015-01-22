@@ -42,14 +42,32 @@ Core.prototype.error = function(name,message){
     }
 };
 /**
- * get extension folder
+ * get extension psd folder
  * @returns {string}
  */
 Core.prototype.getTmpFolderPath = function() {
     if (tmpFolderPath == null) {
         tmpFolderPath = CSLibrary.getSystemPath(SystemPath.EXTENSION) + '/tmp/';
-    }0
-    return decodeURIComponent(tmpFolderPath);
+    };
+    tmpFolderPath = decodeURIComponent(tmpFolderPath);
+    if(!fs.existsSync(tmpFolderPath)){
+        this.mkdeepdir(tmpFolderPath);
+    }
+    return tmpFolderPath;
+};
+/**
+ * get extension img folder
+ * @returns {string}
+ */
+Core.prototype.getTmpImgFolderPath = function() {
+    if (tmpImgFolderPath == null) {
+        tmpImgFolderPath = CSLibrary.getSystemPath(SystemPath.EXTENSION) + '/images/tmp/';
+    }
+    tmpImgFolderPath = decodeURIComponent(tmpImgFolderPath);
+    if(!fs.existsSync(tmpImgFolderPath)){
+        this.mkdeepdir(tmpImgFolderPath);
+    }
+    return tmpImgFolderPath;
 };
 /**
  * long path
@@ -60,8 +78,7 @@ Core.prototype.mkdeepdir = function(src){
     var dirCreate = function(src) {
         var parentDir = path.dirname(src);
         if (!fs.existsSync(parentDir)) {
-            dirCreate(path.dirname(src));
-            return false;
+            return dirCreate(path.dirname(src));;
         }
         !fs.existsSync(src)&&fs.mkdirSync(src);
     }
@@ -94,7 +111,7 @@ Core.prototype.downloadFile = function (originURL,toLocal,progress,sucess,error)
         res.on('data', function (chunk) {
             chunksLength += chunk.length
             chunks.push(chunk);
-            progress((chunksLength/contentLength).toFixed(2));
+            progress&&progress((chunksLength/contentLength).toFixed(2));
         });
         res.on('error',function(err){
             _this.error(null,err);
@@ -105,14 +122,16 @@ Core.prototype.downloadFile = function (originURL,toLocal,progress,sucess,error)
                 if(err){
                     _this.error(null,err);
                 }else{
-                    setTimeout(sucess,800);
+                    sucess&&setTimeout(sucess,800);
                 };
             });
         });
     }).on('error',function(e){
+        error&&error(e);
         _this.error("Got error: " + e.message);
     });
 };
+
 /**
  *
  * @param data{object}

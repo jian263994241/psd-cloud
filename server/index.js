@@ -27,6 +27,7 @@ var server = http.createServer(app);
 
 server.listen(opts.port, function () {
     console.log('Server listening at '+this.address().port);
+    mkdeepdir(opts.dir);
 });
 
 router.use('/json',function(req, res){
@@ -43,7 +44,7 @@ router.use('/json',function(req, res){
                 var lstat = fs.lstatSync(_origin);
                 var _ignore = ignoreFolder(_origin);
                 var item = {};
-                item.name = sliceStr(value,14);
+                item.name = sliceStr(value,20);
                 item.isDir = Number(lstat.isDirectory());
                 item.path =  decodeURIComponent( urljoin (data.path,value) );
                 item.thumbnail =  item.path.replace(opts.ext,opts.thumbnail_ext);
@@ -67,7 +68,6 @@ router.use('/json',function(req, res){
 router.use('/assets',function(req, res){
     var file = decodeURIComponent(path.join(opts.dir,req.url));
     fs.exists(file, function (exists) {
-        console.log(exists);
         if(exists && !fs.lstatSync(file).isDirectory()){
             var binary = fs.readFileSync(file,'binary');
             res.writeHead(200, {
@@ -112,3 +112,15 @@ function sliceStr(str,n){
         return str;
     }
 }
+function mkdeepdir (src){
+    var target = decodeURIComponent(src);
+    var dirCreate = function(src) {
+        var parentDir = path.dirname(src);
+        if (!fs.existsSync(parentDir)) {
+            dirCreate(path.dirname(src));
+            return false;
+        }
+        !fs.existsSync(src)&&fs.mkdirSync(src);
+    }
+    return dirCreate(target);
+};
