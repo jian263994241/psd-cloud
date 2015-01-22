@@ -1,0 +1,18 @@
+{
+  "name": "psdcom",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "find": "^0.1.7",
+    "mime": "^1.2.11",
+    "router": "^1.0.0-beta.3",
+    "finalhandler": "^0.3.3",
+    "urljoin": "^0.1.5"
+  }
+}

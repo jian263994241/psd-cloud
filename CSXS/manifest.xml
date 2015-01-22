@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ExtensionManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ExtensionBundleId="com.ctrip.psdCloud" ExtensionBundleVersion="1.0" Version="4.0">
+	<ExtensionList>
+		<Extension Id="com.ctrip.psdCloud" Version="1.0"/>
+	</ExtensionList>
+	<ExecutionEnvironment>
+		<HostList>
+            <Host Name="PHXS" Version="[15.0,15.9]" />
+            <Host Name="PHSP" Version="[15.0,15.9]" />
+		</HostList>
+		<LocaleList>
+			<Locale Code="All"/>
+		</LocaleList>
+		<RequiredRuntimeList>
+			<RequiredRuntime Name="CSXS" Version="5.0"/>
+		</RequiredRuntimeList>
+	</ExecutionEnvironment>
+	<DispatchInfoList>
+		<Extension Id="com.ctrip.psdCloud">
+			<DispatchInfo>
+				<Resources>
+					<MainPath>./index.html</MainPath>
+                    <ScriptPath>./scripts/psdcloud.jsx</ScriptPath>
+				</Resources>
+				<Lifecycle>
+					<AutoVisible>true</AutoVisible>
+				</Lifecycle>
+				<UI>
+					<Type>Panel</Type>
+					<Menu>PSD Cloud</Menu>
+					<Geometry>
+                        <Size>
+                            <Height>488</Height>
+                            <Width>600</Width>
+                        </Size>
+                        <MinSize>
+                            <Height>488</Height>
+                            <Width>600</Width>
+                        </MinSize>
+                        <MaxSize>
+                            <Height>1288</Height>
+                            <Width>600</Width>
+                        </MaxSize>
+					</Geometry>
+                    <Icons>
+                        <Icon Type="Normal">./images/icons/iconNormal.png</Icon>
+                        <Icon Type="RollOver">./images/icons/iconRollover.png</Icon>
+                        <Icon Type="DarkNormal">./images/icons/iconDarkNormal.png</Icon>
+                        <Icon Type="DarkRollOver">./images/icons/iconDarkRollover.png</Icon>
+                    </Icons>
+				</UI>
+			</DispatchInfo>
+		</Extension>
+	</DispatchInfoList>
+</ExtensionManifest>

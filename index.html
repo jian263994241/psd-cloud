@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>psd cloud</title>
+    <link rel="stylesheet/less" type="text/css" href="style/bootstrap/bootstrap.less">
+    <script src="style/less.min.js"></script>
+    <link rel="stylesheet" href="style/style.css"/>
+    <link rel="stylesheet" id="custom"/>
+    <script src="scripts/lib/jquery.js"></script>
+    <script src="scripts/lib/bootstrap.js"></script>
+    <script src="scripts/lib/underscore-min.js"></script>
+    <script src="scripts/lib/CSInterface.js"></script>
+    <script src="scripts/themeManager.js"></script>
+    <script src="scripts/main.js"></script>
+</head>
+<body>
+<div class="container" id="content"></div>
+<script type="text/ng-template" id="filesListTpl">
+    <div class="row files">
+        <% if(path!='/'){ %>
+        <div class="col-xs-2">
+            <a class="thb thumbnail2" href="javascript:;" data-origin="<%= parentPath %>" data-isdir="1"   data-toggle="tooltip" data-placement="bottom" title="返回上级目录">
+                <i class="glyphicon glyphicon-circle-arrow-left"></i>
+            </a>
+        </div>
+        <% } %>
+        <% assets.forEach(function(value){ %>
+            <div class="col-xs-2">
+                <% if(value.isDir){ %>
+                <a class="thb thumbnail2" href="javascript:;" data-origin="<%= value.path %>" data-isdir="<%= value.isDir %>" data-exists="<%= value.exists %>">
+                    <i class="glyphicon glyphicon-folder-close"></i>
+                    <em><%= value.name %></em>
+                </a>
+                <% }else{ %>
+                <a class="thb thumbnail2" href="javascript:;" data-origin="<%= value.path %>" data-isdir="<%= value.isDir %>" data-exists="<%= value.exists %>"  data-toggle="tooltip" data-placement="bottom" title="<%= value.name %>">
+                    <% if(!value.exists){ %>
+                    <div class="mask"></div>
+                    <i class="glyphicon glyphicon-cloud-download"></i>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success meter" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                            <span class="sr-only"></span>
+                        </div>
+                    </div>
+                    <% } %>
+                    <img src="<%= cc_url %><%= value.thumbnail %>" class="" alt=""/>
+                </a>
+                <% } %>
+
+            </div>
+        <%});%>
+    </div>
+</script>
+
+</body>
+</html>

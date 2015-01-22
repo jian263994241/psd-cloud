@@ -1,0 +1,4 @@
+/tmp/*.psd
+/server/assets/*.psd
+/server/assets/*.png
+/.idea

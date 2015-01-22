@@ -1,0 +1,124 @@
+//
+// Thumbnails
+// --------------------------------------------------
+
+
+// Mixin and adjust the regular image class
+.thumbnail {
+  display: block;
+  padding: @thumbnail-padding;
+  margin-bottom: @line-height-computed;
+  line-height: @line-height-base;
+  background-color: @thumbnail-bg;
+  border: 1px solid @thumbnail-border;
+  border-radius: @thumbnail-border-radius;
+
+  .transition(all .2s ease-in-out);
+
+  > img,
+  a > img {
+    &:extend(.img-responsive);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  // Add a hover state for linked versions only
+  a&:hover,
+  a&:focus,
+  a&.active {
+    border-color: @link-color;
+  }
+
+  // Image captions
+  .caption {
+    padding: @thumbnail-caption-padding;
+    color: @thumbnail-caption-color;
+  }
+}
+.thumbnail2 {
+  @w1 :78px;
+  @w : @w1 - @thumbnail-padding * 2 - 1px * 2 ;
+
+  display: block;
+  padding: @thumbnail-padding;
+  margin-bottom: @line-height-computed;
+  line-height: @line-height-base;
+  background-color: @thumbnail-bg;
+  border: 1px solid @thumbnail-border;
+  border-radius: @thumbnail-border-radius;
+  position: relative;
+  .transition(all .2s ease-in-out);
+  width: @w1;
+  height: @w1;
+  overflow: hidden;
+  text-align: center;
+
+  .glyphicon{
+    font-size: @w * .5;
+    color:#636363;
+    &.glyphicon-circle-arrow-left{
+      font-size: @w;
+    }
+  }
+  em{
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: @w;
+    color:@gray-dark;
+  }
+  .mask{
+    position: absolute;
+    top: @thumbnail-padding;
+    left: @thumbnail-padding;
+    right: @thumbnail-padding;
+    bottom: @thumbnail-padding;
+    z-index: 12;
+    background-color: @gray-dark;
+    .opacity(0.5);
+    &+.glyphicon{
+      position: absolute;
+      .translate(-50%,-50%);
+      top:50%;
+      left: 50%;
+      z-index: 13;
+      color: #e5e5e5;
+    }
+  }
+  .progress{
+    position: absolute;
+    left: @thumbnail-padding;
+    right: @thumbnail-padding;
+    top: 50%;
+    display: none;
+    .translate(0, -50%);
+    z-index: 14;
+  }
+  > img,
+  a > img {
+    &:extend(.img-responsive);
+    margin-left: auto;
+    margin-right: auto;
+    max-height:@w ;
+    max-width: @w;
+    position: absolute;
+    .translate(-50%,-50%);
+    top:50%;
+    left: 50%;
+    z-index: 2;
+  }
+
+  // Add a hover state for linked versions only
+  a&:hover,
+  a&:focus,
+  a&.active {
+    border-color: @link-color;
+    text-decoration: none;
+  }
+  // Image captions
+  .caption {
+    padding: @thumbnail-caption-padding;
+    color: @thumbnail-caption-color;
+  }
+}
