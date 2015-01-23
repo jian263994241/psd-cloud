@@ -3,6 +3,7 @@
 <Extension Id="com.ctrip.psdsync">
 <HostList>
 <Host Name="PHSP" Port="8888"/>
+<Host Name="PHXS" Port="8887"/>
 </HostList>
 </Extension>
 </ExtensionList>

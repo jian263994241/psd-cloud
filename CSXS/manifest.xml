@@ -20,7 +20,7 @@
 			<DispatchInfo>
 				<Resources>
 					<MainPath>./index.html</MainPath>
-                    <ScriptPath>./scripts/psdcloud.jsx</ScriptPath>
+                    <ScriptPath>./scripts/psdsync.jsx</ScriptPath>
 				</Resources>
 				<Lifecycle>
 					<AutoVisible>true</AutoVisible>

@@ -6,14 +6,17 @@ var path = require('path');
 var urljoin = require('urljoin');
 var CSLibrary = new CSInterface();
 
-var Core = function(){} ;
+var Core = function(){
+    this.fs = fs;
+    this.path = path;
+    this.url = url;
+    this.http = http;
+    this.urljoin = urljoin;
+    this.cs = CSLibrary;
+} ;
 
-Core.prototype.fs = fs;
-Core.prototype.path = path;
-Core.prototype.url = url;
-Core.prototype.http = http;
-Core.prototype.urljoin = urljoin;
-Core.prototype.cs = CSLibrary;
+var tmpFolderPath = null;
+var tmpImgFolderPath = null;
 
 /**
  *
@@ -129,6 +132,16 @@ Core.prototype.downloadFile = function (originURL,toLocal,progress,sucess,error)
     }).on('error',function(e){
         error&&error(e);
         _this.error("Got error: " + e.message);
+    });
+};
+/**
+ * psd path
+ * @param filePath
+ */
+Core.prototype.psdCopy = function(filePath){
+    filePath = filePath.replace(/\\/g,'\\\\');
+    CSLibrary.evalScript('psdCopy("' + filePath + '")' ,function(a){
+        console.log(a);
     });
 };
 
