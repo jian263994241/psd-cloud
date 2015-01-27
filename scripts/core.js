@@ -121,7 +121,7 @@ Core.prototype.downloadFile = function (originURL,toLocal,progress,sucess,error)
         });
         res.on('end', function () {
             _this.mkdeepdir(path.dirname(toLocal));
-            core.fs.writeFile(toLocal,Buffer.concat(chunks), function (err) {
+            fs.writeFile(toLocal,Buffer.concat(chunks), function (err) {
                 if(err){
                     _this.error(null,err);
                 }else{

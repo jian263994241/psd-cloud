@@ -34,7 +34,7 @@
                     <em><%= value.name %></em>
                 </a>
                 <% }else{ %>
-                <a class="thb thumbnail2" href="javascript:;" data-origin="<%= value.path %>" data-isdir="<%= value.isDir %>" data-exists="<%= value.exists %>"
+                <a class="thb thumbnail2" href="javascript:;" data-origin="<%= value.path %>" data-isdir="<%= value.isDir %>" data-exists="<%= value.exists %>" data-updated="<%= value.updated %>"
                    data-toggle="tooltip" data-placement="<% if( assets.length > 23 && (assets.length-k) < 6 ){ %>top<%}else{%>bottom<%}%>" title="<%= value.name %>">
                     <% if(!value.exists){ %>
                     <div class="mask"></div>
@@ -44,7 +44,15 @@
                             <span class="sr-only"></span>
                         </div>
                     </div>
-                    <% } %>
+                    <% }else if(!value.updated){ %>
+                    <div class="mask"></div>
+                    <i class="glyphicon glyphicon-refresh"></i>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success meter" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                            <span class="sr-only"></span>
+                        </div>
+                    </div>
+                    <%}%>
                     <img data-src="<%= cc_url %><%= value.thumbnail %>" alt=""/>
                 </a>
                 <% } %>
