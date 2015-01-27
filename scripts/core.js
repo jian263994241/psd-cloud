@@ -140,7 +140,7 @@ Core.prototype.downloadFile = function (originURL,toLocal,progress,sucess,error)
  */
 Core.prototype.psdCopy = function(filePath){
     filePath = filePath.replace(/\\/g,'\\\\');
-    CSLibrary.evalScript('psdCopy("' + filePath + '")' ,function(a){
+    CSLibrary.evalScript('addElementAll("' + filePath + '")' ,function(a){
         console.log(a);
     });
 };

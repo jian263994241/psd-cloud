@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ExtensionList>
-  <Extension Id="com.ctrip.psdCloud">
+  <Extension Id="com.ctrip.psdsync">
     <HostList>
       <Host Name="PHSP" Port="8888"/>
       <Host Name="PHXS" Port="8887"/>
     </HostList>
   </Extension>
 </ExtensionList>
->>>>>>> c76bf6e3e8f550b07a83b2e88fdb3e31c1075181

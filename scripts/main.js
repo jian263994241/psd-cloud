@@ -52,6 +52,7 @@
                         alert('Download failed!');
                     });
                 }else{
+                    console.log(_localFile);
                     core.psdCopy(_localFile);
                 }
             });
