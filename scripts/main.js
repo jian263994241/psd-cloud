@@ -1,6 +1,7 @@
 (function () {
     var core = require('./scripts/core.js');
-    var cc_url = 'http://localhost:3000';
+    var cc_url = 'http://doc.ui.sh.ctriptravel.com:7788';
+    //var cc_url = 'http://localhost:3000';
     var cc_url_json = core.urljoin(cc_url,'json');
     var cc_url_assets = core.urljoin(cc_url,'assets');
 
@@ -54,7 +55,7 @@
                         alert('Download failed!');
                     });
                 }else{
-                    core.psdCopy(_localFile);
+                    core.psdOpen(_localFile);
                 }
             });
             $wrap.find('[data-toggle="tooltip"]').tooltip();
@@ -103,7 +104,7 @@
 
             loadImg(content);
 
-            transitionTimer = transitionTimer == undefined ? 600 :transitionTimer  ;
+            transitionTimer = transitionTimer == undefined ? 300 :transitionTimer  ;
 
             $ele.fadeIn(transitionTimer, function () {
                 bindEvent(content);

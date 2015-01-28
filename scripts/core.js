@@ -1,3 +1,7 @@
+/**
+ * jianl@ctrip.com
+ * jianl
+ */
 var url = require('url');
 var http = require('http');
 var querystring = require('querystring');
@@ -121,10 +125,13 @@ Core.prototype.downloadFile = function (originURL,toLocal,progress,sucess,error)
         });
         res.on('end', function () {
             _this.mkdeepdir(path.dirname(toLocal));
-            fs.writeFile(toLocal,Buffer.concat(chunks), function (err) {
+            fs.writeFile(toLocal,Buffer.concat(chunks),function (err) {
                 if(err){
                     _this.error(null,err);
                 }else{
+                    if(path.extname(toLocal) =='.psd'){
+                        fs.chmodSync(toLocal,'444');
+                    };
                     sucess&&setTimeout(sucess,800);
                 };
             });
@@ -144,18 +151,15 @@ Core.prototype.psdCopy = function(filePath){
         console.log(a);
     });
 };
-
 /**
- *
- * @param data{object}
+ * psd path
+ * @param filePath
  */
-//Core.prototype.shotoshopScripts = function(data){
-//    var _script = core.fs.readFileSync(core.path.join(core.getJsFolderPath(),'photoshop.jsx'),'utf8');
-//    var _compiled  = _.template(_script);
-//    core.cs.evalScript(_compiled(data), function (result) {
-//        console.log('----->>> evalScript callback result : ' + result + ' <<<-----');
-//    });
-//};
-
+Core.prototype.psdOpen = function(filePath){
+    filePath = filePath.replace(/\\/g,'\\\\');
+    CSLibrary.evalScript('openDoc("' + filePath + '")' ,function(a){
+        console.log(a);
+    });
+};
 
 module.exports = new Core();

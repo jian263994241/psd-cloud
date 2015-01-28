@@ -1,4 +1,8 @@
 
+function openDoc(filePath){
+    app.open(File(filePath));
+};
+
 function addElementAll(filePath){
 
     if(app.documents.length > 0){
@@ -7,10 +11,6 @@ function addElementAll(filePath){
 
         var newFile = File(filePath);
 
-        var layersToRemove = new Array();
-        for(i=0; i < docRef.layers.length; i++){
-            layersToRemove.push(docRef.layers[i]);
-        }
         var cDoc = app.open(newFile);
 
         for(i=cDoc.layers.length-1;i>=0;i--){
