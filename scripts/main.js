@@ -115,7 +115,7 @@
         function loadImg($wrap){
             $wrap.find('img').each(function(k,img){
                 var src = $(img).data('src');
-                var localFile = core.path.join(core.getTmpImgFolderPath(),src.replace(cc_url_assets,''));
+                var localFile = core.path.join(core.getTmpFolderPath(),src.replace(cc_url_assets,''));
                 if(offline){
                     $(img).attr('src',localFile);
                 }else{

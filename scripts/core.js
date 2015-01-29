@@ -62,20 +62,7 @@ Core.prototype.getTmpFolderPath = function() {
     }
     return tmpFolderPath;
 };
-/**
- * get extension img folder
- * @returns {string}
- */
-Core.prototype.getTmpImgFolderPath = function() {
-    if (tmpImgFolderPath == null) {
-        tmpImgFolderPath = CSLibrary.getSystemPath(SystemPath.EXTENSION) + '/images/tmp/';
-    }
-    tmpImgFolderPath = decodeURIComponent(tmpImgFolderPath);
-    if(!fs.existsSync(tmpImgFolderPath)){
-        this.mkdeepdir(tmpImgFolderPath);
-    }
-    return tmpImgFolderPath;
-};
+
 /**
  * long path
  * @param src{string}
