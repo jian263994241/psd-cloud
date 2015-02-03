@@ -54,7 +54,7 @@ Core.prototype.error = function(name,message){
  */
 Core.prototype.getTmpFolderPath = function() {
     if (tmpFolderPath == null) {
-        tmpFolderPath = CSLibrary.getSystemPath(SystemPath.EXTENSION) + '/tmp/';
+        tmpFolderPath = path.join(CSLibrary.getSystemPath(SystemPath.MY_DOCUMENTS),'Adobe/ExtensionsData/com.ctrip.psdsync') ;
     };
     tmpFolderPath = decodeURIComponent(tmpFolderPath);
     if(!fs.existsSync(tmpFolderPath)){
